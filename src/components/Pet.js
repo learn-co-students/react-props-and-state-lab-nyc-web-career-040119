@@ -1,26 +1,64 @@
 import React from 'react'
 
 class Pet extends React.Component {
+  handleClick = (event) => {
+    this.props.adoptPet(event)
+  }
   render() {
-    return (
-      <div className="card">
+    const petCard = this.props.petState.map(pet => {
+      // debugger
+      return <div className="card" key={pet.id}>
         <div className="content">
           <a className="header">
             {/*'♀' OR '♂' */}
-            PET NAME
+            {pet.name}
           </a>
           <div className="meta">
-            <span className="date">PET TYPE</span>
+            <span className="date">{pet.type}</span>
           </div>
           <div className="description">
-            <p>Age: PET AGE</p>
-            <p>Weight: PET WEIGHT</p>
+            <p>Age: {pet.age}</p>
+            <p>Weight: {pet.weight}</p>
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button">Adopt pet</button>
+          {
+            pet.isAdopted ?
+              <button
+                data-id={pet.id}
+                data-age={pet.age}
+                data-gender={pet.gender}
+                data-name={pet.name}
+                data-type={pet.type}
+                data-weight={pet.weight}
+                data-isadopted={pet.isAdopted}
+                className="ui disabled button"
+                onClick={this.handleClick}
+              >
+                Already adopted
+              </button>
+            :
+              <button
+                data-id={pet.id}
+                data-age={pet.age}
+                data-gender={pet.gender}
+                data-name={pet.name}
+                data-type={pet.type}
+                data-weight={pet.weight}
+                data-isadopted={pet.isAdopted}
+                className="ui primary button"
+                onClick={this.handleClick}
+              >
+                Adopt pet
+              </button>
+          }
         </div>
+      </div>
+    })
+    console.log("Pet state: ", this.props.petState)
+    return (
+      <div>
+        {petCard}
       </div>
     )
   }
