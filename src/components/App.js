@@ -11,8 +11,7 @@ class App extends React.Component {
       pets: [],
       filters: {
         type: 'all'
-      },
-      currentPet: {}
+      }
     }
   }
 
@@ -48,33 +47,20 @@ class App extends React.Component {
         break
     } // end switch
   } // end onFindPetsClick
-  onAdoptPet = (event) => {
-    this.setState({
-      currentPet: {
-        id: event.target.dataset.id,
-        age: event.target.dataset.age,
-        gender: event.target.dataset.gender,
-        name: event.target.dataset.name,
-        type: event.target.dataset.type,
-        weight: event.target.dataset.weight,
-        isAdopted: event.target.dataset.isAdopted
-      }
-    }, () => console.log(this.state.currentPet))
 
-    const currentPetIndex = this.state.pets.findIndex(pet => {
-      return pet.id === event.target.dataset.id
+  onAdoptPet = (petId) => {
+    const pets = this.state.pets.map(pet => {
+      // creating a new array with map
+      // checking if pet.id === petId being passed from Pet.js
+      return pet.id === petId ? {...pet, isAdopted: true} : pet
+      // if true, spread the pet and change only isAdopted
+      // else, return just the pet without modifying
     })
-    // const petsCopy = [...this.state.pets]
-    // this.setState({
-    //   pets: {
-    //     ...petsCopy,
-    //     petsCopy[currentPetIndex]: {
-    //       ...petsCopy[currentPetIndex],
-    //       isAdopted: !petsCopy[currentPetIndex].isAdopted
-    //     }
-    //   }
-    // })
-  }
+
+    this.setState({
+      pets: pets
+    }, () => console.log(this.state.pets))
+  } // end onAdoptPet
   // end HELPER METHODS
 
   render() {
@@ -93,7 +79,7 @@ class App extends React.Component {
             </div>
             <div className="twelve wide column">
               <PetBrowser
-                petState={this.state.pets}
+                pets={this.state.pets}
                 onAdoptPet={this.onAdoptPet}
               />
             </div>
