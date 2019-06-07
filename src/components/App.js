@@ -2,7 +2,7 @@ import React from 'react'
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor() {
     super()
     // SET INITIAL STATE
@@ -12,7 +12,7 @@ class App extends React.Component {
         type: 'all'
       }
     }
-  }
+  } // END SETTING INITIAL STATE
 
   // UPDATE THE STATE
   onChangeType = (e) => {
@@ -48,9 +48,9 @@ class App extends React.Component {
         break;
     }
   } // END FETCHING PET DATA
-  
+
   render() {
-    console.log('App Current State:', this.state)
+    console.log('App Current State:', this.state, this.pets)
     return (
       <div className="ui container">
         <header>
@@ -65,7 +65,7 @@ class App extends React.Component {
               />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}/>
             </div>
           </div>
         </div>
@@ -73,5 +73,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default App
