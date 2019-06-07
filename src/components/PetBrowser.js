@@ -9,6 +9,7 @@ export default class PetBrowser extends React.Component {
       return <Pet
         key={pet.id}
         pet={pet}
+        onAdoptPet={this.props.onAdoptPet}
       />
     })
 

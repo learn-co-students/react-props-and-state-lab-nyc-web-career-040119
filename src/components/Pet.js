@@ -3,7 +3,7 @@ import React from 'react'
 export default class Pet extends React.Component {
 
   handleClick = () => {
-
+    return this.props.onAdoptPet(this.props.pet.id)
   }
 
   render() {
@@ -25,11 +25,13 @@ export default class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {this.props.pet.isAdopted ? <button className="ui disabled button">Already adopted</button> : <button
-            className="ui primary button"
-            onClick={this.handleClick}>
-            Adopt pet
-          </button>}
+          {this.props.pet.isAdopted ?
+            <button className="ui disabled button">Already adopted</button> :
+            <button
+              className="ui primary button"
+              onClick={this.handleClick}>
+              Adopt pet
+            </button>}
 
 
         </div>

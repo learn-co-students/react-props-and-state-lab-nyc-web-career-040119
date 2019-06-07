@@ -49,6 +49,19 @@ export default class App extends React.Component {
     }
   } // END FETCHING PET DATA
 
+  // ADOPT BUTTON
+  onAdoptPet = (petId) => {
+    // console.log(petId)
+    // make a new array with the updated adopted status
+    const newPets = this.state.pets.map(pet => {
+      return pet.id === petId ? {...pet, isAdopted: true} : pet
+    })
+    // update the state with the new array
+    this.setState({
+      pets: newPets
+    })
+  } // END ADOPT BUTTON
+
   render() {
     console.log('App Current State:', this.state, this.pets)
     return (
@@ -67,6 +80,7 @@ export default class App extends React.Component {
             <div className="twelve wide column">
               <PetBrowser
                 pets={this.state.pets}
+                onAdoptPet={this.onAdoptPet}
               />
             </div>
           </div>
