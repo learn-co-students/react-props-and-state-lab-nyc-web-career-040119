@@ -25,6 +25,10 @@ export default class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
+          // render adopt button if the pet is not adopted yet
+          // otherwise, render adopt pet button
+          // ** currently all the pets are not adopted
+          // ** so only "adopt pet" btns are shown
           {this.props.pet.isAdopted ?
             <button className="ui disabled button">Already adopted</button> :
             <button

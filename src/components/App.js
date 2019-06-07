@@ -52,7 +52,9 @@ export default class App extends React.Component {
   // ADOPT BUTTON
   onAdoptPet = (petId) => {
     // console.log(petId)
-    // make a new array with the updated adopted status
+
+    // when the "adopt pet" button is clicked,
+    // need to make a new array with the updated adopted status
     const newPets = this.state.pets.map(pet => {
       return pet.id === petId ? {...pet, isAdopted: true} : pet
     })
