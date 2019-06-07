@@ -3,7 +3,7 @@ import Pet from './Pet'
 
 export default class PetBrowser extends React.Component {
   render() {
-    console.log('Pet Browser Props:', this.props.pets)
+    // console.log('Pet Browser Props:', this.props.pets)
 
     const pets = this.props.pets.map(pet => {
       return <Pet
